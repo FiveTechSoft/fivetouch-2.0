@@ -29,9 +29,9 @@ return nil
 
 #pragma BEGINDUMP
 
-void hbqt_del_QsciAbstractAPIs( void ) {}
+// void hbqt_del_QsciAbstractAPIs( void ) {}
 
-void hbqt_del_QsciCommandSet( void ) {}
+// void hbqt_del_QsciCommandSet( void ) {}
 
 #pragma ENDDUMP
 
