@@ -1,40 +1,40 @@
-QT        += core gui network widgets printsupport
+QT        += core gui network widgets printsupport bluetooth webview
 
 TARGET    =  fivetouch
 TEMPLATE  =  app
 
-SOURCES   += main.cpp
+SOURCES   += ./../main.cpp
 
-PRGS = .\prgs\fivetouch.prg \
-       .\prgs\extend.prg \
-       .\prgs\files.prg \
-       .\prgs\function.prg \
-       .\prgs\ide.prg \
-       .\prgs\link.prg \
-       .\prgs\msgs.prg \
-       .\prgs\run.prg \
-       .\prgs\system.prg \
-       .\prgs\themes.prg
+PRGS = ./../prgs/fivetouch.prg \
+       ./../prgs/extend.prg \
+       ./../prgs/files.prg \
+       ./../prgs/function.prg \
+       ./../prgs/ide.prg \
+       ./../prgs/link.prg \
+       ./../prgs/msgs.prg \
+       ./../prgs/run.prg \
+       ./../prgs/system.prg \
+       ./../prgs/themes.prg
 
 OTHER_FILES += $$PRGS
 
-HARBOUR_INCLUDE = c:/harbour/include
+HARBOUR_INCLUDE = ./../../harbour/include
 QMAKE_CFLAGS += -I$$HARBOUR_INCLUDE
 INCLUDEPATH += $$HARBOUR_INCLUDE
 
-harbour.output  = $$PWD/${QMAKE_FILE_BASE}.c
-harbour.commands = c:\harbour\bin\harbour ${QMAKE_FILE_NAME} -n -I$$PWD -I$$HARBOUR_INCLUDE -o${QMAKE_FILE_OUT}
+harbour.output  = ./$$PWD/${QMAKE_FILE_BASE}.c
+harbour.commands = ./../../harbour/bin/darwin/clang/harbour ${QMAKE_FILE_NAME} -n -DFROM_OSX -I$$PWD/.. -I$$HARBOUR_INCLUDE -o${QMAKE_FILE_OUT}
 harbour.variable_out = SOURCES
 harbour.input = PRGS
 QMAKE_EXTRA_COMPILERS += harbour
 
 CONFIG    += mobility
 
-ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD
 
-OTHER_FILES += $$PWD/android/AndroidManifest.xml
+OTHER_FILES += $$PWD/AndroidManifest.xml
 
-LIBS += -LC:\harbour\lib\android  \
+LIBS += -L/Users/$(USER)/harbour/lib/android/clang \
            -Wl,--start-group      \
                 -lhbamf \
                 -lhbblink \
@@ -114,8 +114,8 @@ LIBS += -LC:\harbour\lib\android  \
                 -lhbpcre \
                 -ljpeg \
                 -lpng \
-                -lgtnet \
-                -ldbrmap \
+                #-lgtnet \
+                #-ldbrmap \
                 -lhbqtwidgets \
                 -lhbqtzxing \
                 -lhbqtsensors \
@@ -131,18 +131,20 @@ LIBS += -LC:\harbour\lib\android  \
                 -lhbqtopengl \
                 -lhbqtmultimediawidgets \
                 -lhbqtmultimedia \
-                -lhbqtdeclarative \
+                #-lhbqtdeclarative \
                 -lhbqtnetwork \
                 -lhbqtgui \
                 -lhbqtcore \
                 -lhbxbp \
-                -lqscintilla2 \
+                -lqscintilla2_qt5 \
                 -lhbqscintilla \
            -Wl,--end-group
 
  COMMON_DATA.path = /assets
- COMMON_DATA.files = $$PWD/FiveTouch.ch
- COMMON_DATA.files += c:/harbour/include/hbclass.ch
- COMMON_DATA.files += c:/harbour/include/hboo.ch
+ COMMON_DATA.files = $$PWD/../FiveTouch.ch
+ COMMON_DATA.files += $$PWD/../samples/tutor02.prg
+ COMMON_DATA.files += $$PWD/../images/cancel.png
+ COMMON_DATA.files += /Users/$(USER)/harbour/include/hbclass.ch
+ COMMON_DATA.files += /Users/$(USER)/harbour/include/hboo.ch
  COMMON_DATA.depends = FORCE
  INSTALLS += COMMON_DATA
