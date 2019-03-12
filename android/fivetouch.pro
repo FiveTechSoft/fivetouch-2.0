@@ -1,4 +1,4 @@
-QT        += core gui network widgets printsupport bluetooth webview
+QT        += core gui network widgets printsupport bluetooth
 
 TARGET    =  fivetouch
 TEMPLATE  =  app
