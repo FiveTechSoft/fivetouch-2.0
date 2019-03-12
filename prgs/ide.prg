@@ -34,12 +34,7 @@ CLASS TIde
    DATA oEditor
    DATA lPhoneMode INIT .T.
    DATA oFuncList
-
-   #ifdef FROM_OSX
-      DATA lScintilla INIT .T.
-   #else
-      DATA lScintilla INIT .T.
-   #endif
+   DATA lScintilla INIT .T.
 
    METHOD New() CONSTRUCTOR
    METHOD PhoneMode()
