@@ -13,7 +13,11 @@ return AllTrim( If( n > 0, Left( cName, n - 1 ), cName ) )
 
 function cFileNoPath( cPathMask )  // returns just the filename no path
 
-    local n := RAt( "\", cPathMask )
+    #ifdef FROM_OSX
+       local n := RAt( "/", cPathMask )
+    #else
+       local n := RAt( "\", cPathMask )
+    #endif
 
 return If( n > 0 .and. n < Len( cPathMask ),;
            Right( cPathMask, Len( cPathMask ) - n ),;
@@ -40,11 +44,14 @@ return Len( aResult ) == 1 .and. "D" $ aResult[ 1 ][ 5 ]
 
 function CopyFiles()
 
-   #ifndef FROM_OSX
+   // #ifndef FROM_OSX
       QFile( "assets:/FiveTouch.ch" ):copy( "FiveTouch.ch" )
       QFile( "assets:/hbclass.ch" ):copy( "hbclass.ch" )
       QFile( "assets:/hboo.ch" ):copy( "hboo.ch" )
-   #endif
+      QFile( "assets:/tutor02.prg" ):copy( "tutor02.prg" )
+      DirMake( "./images" )
+      QFile( "assets:/cancel.png" ):copy( "images/cancel.png" )
+   // #endif
 
 return nil
 
